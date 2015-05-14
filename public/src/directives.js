@@ -39,8 +39,8 @@ angular.module('ContactsApp')
 
 				$scope.blurUpdate = function () {
 					if ($scope.live !== 'false') {
-						$scope.record.$update(function (updateRecord) {
-							$scope.record = updateRecord;
+						$scope.record.$update(function (updatedRecord) {
+							$scope.record = updatedRecord;
 						});
 					}
 				};
@@ -81,8 +81,8 @@ angular.module('ContactsApp')
 						$scope.record[$filter('camelCase')($scope.field.name)] = [$scope.field.value, $scope.field.type];
 						$scope.remove();
 						if ($scope.live !== 'false') {
-							$scope.record.$update(function (updateRecord) {
-								$scope.record = updateRecord;
+							$scope.record.$update(function (updatedRecord) {
+								$scope.record = updatedRecord;
 							});
 						}
 					}

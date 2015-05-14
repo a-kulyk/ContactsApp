@@ -1,5 +1,5 @@
 angular.module('ContactsApp')
-	.controller('ListController', function ($scope, Contact, $location) {
+	.controller('ListController', function ($scope, $location, Contact) {
 		$scope.contacts = Contact.query();
 		$scope.fields = ['firstName', 'lastName'];
 
@@ -15,7 +15,7 @@ angular.module('ContactsApp')
 			$location.url('/contact/' + id);
 		};
 	})
-	.controller('NewController', function ($scope, Contact, $location) {
+	.controller('NewController', function ($scope, $location, Contact) {
 		$scope.contact = new Contact({
 			firstName: ['', 'text'],
 			lastName:  ['', 'text'],
@@ -35,5 +35,12 @@ angular.module('ContactsApp')
 				$location.url('/contacts');
 			}
 
+		};
+	})
+	.controller('SingleController', function ($scope, $location, Contact, $routeParams) {
+		$scope.contact = Contact.get({ id: parseInt($routeParams.id, 10) });
+		$scope.delete = function () {
+			$scope.contact.$delete();
+			$location.url('/contacts');
 		};
 	});
